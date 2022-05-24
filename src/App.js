@@ -17,7 +17,7 @@ function App() {
 
   const [ formErrors, setFormErrors] = useState("")
 
-  const [ memberToEdit, setMemberToEdit] = useState({})
+  const [ memberToEdit, setMemberToEdit] = useState(null)
 
   const updateForm = (inputName, inputValue) => {
     setFormValues({...formValues, [inputName]: inputValue})
@@ -29,8 +29,8 @@ function App() {
       email: formValues.email
     };
 
-    if (!newTeamMember.name || !newTeamMember.role) {
-      setFormErrors("Please enter a Name and Role for New Team Member")
+    if (!newTeamMember.name) {
+      setFormErrors("Please enter a Name for New Team Member")
       return;
     }
     setTeam([...team, newTeamMember]);
@@ -42,8 +42,9 @@ function App() {
     setFormErrors("")
   }
 
-  const editTeamMember = evt => {
-    console.log(evt)
+  const editTeamMember = name => {
+    const target = team.filter(player => player.name === name)
+    setMemberToEdit(target)
   }
 
 
@@ -56,6 +57,7 @@ function App() {
         update={updateForm}
         submit={submitForm}
         clear={clearTeam}
+        memberToEdit={memberToEdit}
       />
       <Team team={team} edit={editTeamMember}/>
     </div>

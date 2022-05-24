@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 
 export default function Form(props) {
-    const {values, update, submit, clear} = props
+    const {values, update, submit, clear, memberToEdit} = props
+    const [member, setMember] = useState(null)
+
+    useEffect(()=>{
+        setMember(memberToEdit)
+    },[memberToEdit])
 
     const onChange = evt => {
         const name = evt.target.name;
@@ -28,13 +33,14 @@ export default function Form(props) {
                 />
             </label>
             <label>Role
-                <input 
-                type="text"
-                name="role"
-                value={values.role}
-                onChange={onChange}
-                placeholder="Role..."
-                />
+                <select value={values.role} name="role" onChange={onChange}>
+                    <option value={""}>-- Role --</option>
+                    <option value={"Point Guard"}>Point Guard</option>
+                    <option value={"Shooting Guard"}>Shooting Guard</option>
+                    <option value={"Small Forward"}>Small Forward</option>
+                    <option value={"Power Forward"}>Power Forward</option>
+                    <option value={"Center"}>Center</option>
+                </select>
             </label>
             <label>Email
                 <input 

@@ -10,7 +10,7 @@ export default function Team (props) {
         {team.map((mem, i) => {
                 return <div className='team-member' key={i}>
                 <TeamMember name={mem.name} role={mem.role} email={mem.email}/>
-                <button onClick={edit}>Edit</button>
+                <button onClick={()=>edit(mem.name)}>Edit</button>
                 </div>
         })}
         </div>
