@@ -17,34 +17,47 @@ function App() {
 
   const [ formErrors, setFormErrors] = useState("")
 
+  const [ memberToEdit, setMemberToEdit] = useState({})
+
   const updateForm = (inputName, inputValue) => {
     setFormValues({...formValues, [inputName]: inputValue})
   }
   const submitForm = () => {
     const newTeamMember = {
-      name: formValues.name,
-      role: formValues.role,
+      name: formValues.name.trim(),
+      role: formValues.role.trim(),
       email: formValues.email
     };
+
+    if (!newTeamMember.name || !newTeamMember.role) {
+      setFormErrors("Please enter a Name and Role for New Team Member")
+      return;
+    }
     setTeam([...team, newTeamMember]);
     setFormValues(initialTeam);
+    setFormErrors("")
   }
   const clearTeam = ()=> {
     setTeam([]);
+    setFormErrors("")
+  }
+
+  const editTeamMember = evt => {
+    console.log(evt)
   }
 
 
   return (
     <div className='container'>
       <h1>The Dream Team</h1>
-      {formErrors && <h2>{formErrors}</h2>}
+      {formErrors && <h2 className='error'>{formErrors}</h2>}
       <Form
         values={formValues}
         update={updateForm}
         submit={submitForm}
         clear={clearTeam}
       />
-      <Team team={team}/>
+      <Team team={team} edit={editTeamMember}/>
     </div>
     
   );

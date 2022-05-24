@@ -17,7 +17,7 @@ export default function Form(props) {
     }
 
     return (
-        <form className='form' onSubmit={onSubmit}>
+        <form className='form'onSubmit={onSubmit}>
             <label>Name
                 <input 
                 type="text"
@@ -46,7 +46,9 @@ export default function Form(props) {
                 />
             </label>
             <div className='submit'>
-                <button disabled={!values.name || !values.role || !values.email}>Add to Team</button>
+                <button  disabled={!values.name || !values.role || !values.email}>Add to Team</button>
+            </div>
+            <div className='clear'>
                 <button onClick={clear}>Clear Team</button>
             </div>
         </form>

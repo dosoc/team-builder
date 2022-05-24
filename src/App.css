@@ -42,3 +42,24 @@
   height: 30vh;
   justify-content: space-around;
 }
+
+.error {
+  color: crimson;
+}
+
+.team {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+.team-member{
+  width: 30%;
+  border: 1px solid black;
+  margin: 2vh;
+  border-radius: 8px;
+  box-shadow: 1px 1px 6px rgb(47, 47, 47);
+  color: black;
+  background-color: rgb(179, 178, 178);
+  font-weight: 600;
+  padding-bottom: 5px;
+}
