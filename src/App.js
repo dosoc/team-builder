@@ -33,6 +33,10 @@ function App() {
       setFormErrors("Please enter a Name for New Team Member")
       return;
     }
+    if(team.filter(member => newTeamMember.name === member.name).length > 0) {
+      setFormErrors("Already on Team")
+      return;
+    }
     setTeam([...team, newTeamMember]);
     setFormValues(initialTeam);
     setFormErrors("")
@@ -52,11 +56,9 @@ function App() {
   const removeMember = id => {
     const target = team.filter(player => player.name === id)
     setTeam(team.filter(mem => mem !== target[0]))
-    console.log(`remove member ${target}`)
   }
   useEffect(()=> {
-    console.log('App use Effect ran')
-
+    console.log(team)
   }, [team])
 
 

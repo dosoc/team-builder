@@ -1,14 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 
 
 export default function Form(props) {
     const {values, update, submit, clear, memberToEdit} = props
-
-    useEffect(()=>{
-        console.log('member to edit  use effect ran')
-        console.log(memberToEdit)
-    },[memberToEdit])
 
     const onChange = evt => {
         const name = evt.target.name;
