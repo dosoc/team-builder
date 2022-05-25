@@ -4,10 +4,10 @@ import React, { useState, useEffect } from 'react';
 
 export default function Form(props) {
     const {values, update, submit, clear, memberToEdit} = props
-    const [member, setMember] = useState(null)
 
     useEffect(()=>{
-        setMember(memberToEdit)
+        console.log('member to edit  use effect ran')
+        console.log(memberToEdit)
     },[memberToEdit])
 
     const onChange = evt => {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.css';
 import Team from './components/team'
 import Form from './components/form'
@@ -43,9 +43,21 @@ function App() {
   }
 
   const editTeamMember = name => {
+    removeMember(name);
     const target = team.filter(player => player.name === name)
-    setMemberToEdit(target)
+    setMemberToEdit(target[0])
+    setFormValues(memberToEdit)
   }
+
+  const removeMember = id => {
+    const target = team.filter(player => player.name === id)
+    setTeam(team.filter(mem => mem !== target[0]))
+    console.log(`remove member ${target}`)
+  }
+  useEffect(()=> {
+    console.log('App use Effect ran')
+
+  }, [team])
 
 
   return (
@@ -59,7 +71,9 @@ function App() {
         clear={clearTeam}
         memberToEdit={memberToEdit}
       />
-      <Team team={team} edit={editTeamMember}/>
+      <Team team={team} 
+            edit={editTeamMember}
+            remove={removeMember}/>
     </div>
     
   );
